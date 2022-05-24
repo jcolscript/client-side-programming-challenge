@@ -5,5 +5,17 @@ import { Component } from '@angular/core';
   templateUrl: './home.component.html',
 })
 export class HomeComponent {
+  imgIndex = 0;
+  romanNumbers = ['I', 'II', 'III', 'IV'];
+  isAlertVisible = true;
+
   constructor() {}
+
+  public selectedImage(index: number): void {
+    this.imgIndex = index;
+  }
+
+  public toggleAlert(): void {
+    this.isAlertVisible = !this.isAlertVisible;
+  }
 }

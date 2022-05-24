@@ -34,33 +34,24 @@
         </div>
       </div>
       <div class="flex lg:justify-end justify-center">
-        <div class="w-3/3 md:w-8/12 mt-4 lg:mt-0">
-          <img src="assets/img/carousel-items/carousel-4.jpg" alt="..."
+        <div class="w-3/3 md:w-7/12 mt-4 lg:mt-0">
+          <img src="assets/img/carousel-items/carousel-{{imgIndex}}.jpg" alt="..."
             class="shadow-xl rounded-2xl max-w-full h-auto border-none" />
         </div>
       </div>
     </div>
     <div class="container px-4 mx-auto flex lg:justify-start justify-center">
       <button href="#" class="inline-flex items-center justify-center h-12 w-12 border border-transparent lg:text-base text-sm font-semibold
-      rounded-full transition-all duration-300 bg-white text-black">
-        I
-      </button>
-      <button href="#" class="inline-flex items-center justify-center h-12 w-12 border border-transparent lg:text-base text-sm font-semibold
-      rounded-full transition-all duration-300 text-white bg-amber-700 hover:bg-white hover:text-black ml-4">
-        II
-      </button>
-      <button href="#" class="inline-flex items-center justify-center h-12 w-12 border border-transparent lg:text-base text-sm font-semibold
-      rounded-full transition-all duration-300 text-white bg-amber-700 hover:bg-white hover:text-black ml-4">
-        III
-      </button>
-      <button href="#" class="inline-flex items-center justify-center h-12 w-12 border border-transparent lg:text-base text-sm font-semibold
-      rounded-full transition-all duration-300 text-white bg-amber-700 hover:bg-white hover:text-black ml-4">
-        IV
+      rounded-full transition-all duration-300 hover:bg-white hover:text-black"
+        *ngFor="let romanNumber of romanNumbers; let i = index" (click)="selectedImage(i)"
+        [ngClass]="{'ml-4': romanNumber !== 'I', 'bg-white text-black': i === imgIndex, 'bg-amber-700 text-white': i !== imgIndex}">
+        {{romanNumber}}
       </button>
     </div>
   </section>
   <div
-    class="lg:absolute lg:bottom-14 lg:right-14 fixed right-5 bottom-2 p-3 max-w-md mx-auto bg-white rounded-full shadow-lg flex items-center space-x-4 z-40">
+    class="lg:absolute lg:bottom-14 lg:right-14 fixed right-5 bottom-2 p-3 max-w-md mx-auto bg-white rounded-full shadow-lg flex items-center space-x-4 z-40"
+    [ngClass]="{'hidden': !isAlertVisible}">
     <div class="shrink-0">
       <img class="h-12" src="assets/img/oculus-rift.png" alt="ChitChat Logo">
     </div>
@@ -69,7 +60,8 @@
       </p>
     </div>
     <button href="#" class="inline-flex items-center justify-center border text-sm px-4 py-3 font-semibold
-    rounded-full transition-all duration-300 text-white bg-amber-700 hover:bg-white hover:text-black">
+    rounded-full transition-all duration-300 text-white bg-amber-700 hover:bg-white hover:text-black"
+      (click)="toggleAlert()">
       OK
     </button>
   </div>
