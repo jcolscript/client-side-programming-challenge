@@ -1352,6 +1352,27 @@
   resolved "https://registry.yarnpkg.com/@ngtools/webpack/-/webpack-13.3.6.tgz#98c9c830d1a4367a51593b1f12ca28b096b740ad"
   integrity sha512-QSdFtQIUgnDvM0EXFOpVRp5HTN0U4B9z60fHHfKKzxpNuU3z9EFzJoDUMZ8WabLXtWboUZWCSx0x3tdBt/sVQw==
 
+"@ngxs/devtools-plugin@^3.7.3-dev.master-b00eeb3":
+  version "3.7.3-dev.master-b00eeb3"
+  resolved "https://registry.yarnpkg.com/@ngxs/devtools-plugin/-/devtools-plugin-3.7.3-dev.master-b00eeb3.tgz#2983517061ceae8b48f9f8d4419725cf320876d9"
+  integrity sha512-IzZT8wLpt39wup8X5UfuTIEXYKbJtLpFi7+bFaeARqhzyE++Phv5adYQCzGALLhTvy+NSnzUKsnynFKx930KpA==
+  dependencies:
+    tslib "^1.9.0"
+
+"@ngxs/logger-plugin@^3.7.3-dev.master-b00eeb3":
+  version "3.7.3-dev.master-b00eeb3"
+  resolved "https://registry.yarnpkg.com/@ngxs/logger-plugin/-/logger-plugin-3.7.3-dev.master-b00eeb3.tgz#cc4829f6f2655d3c1e3a2ecc5d2acfee5af914da"
+  integrity sha512-0yTUfRO/FsZxYNSc38vg7W8CX/jidC9oDdt+1k47KNa8AFRqFCp9oqPyu7xkjf9qXBy92ur5UlYE/ybk6IOkeg==
+  dependencies:
+    tslib "^1.9.0"
+
+"@ngxs/store@^3.7.3-dev.master-b00eeb3":
+  version "3.7.3-dev.master-b00eeb3"
+  resolved "https://registry.yarnpkg.com/@ngxs/store/-/store-3.7.3-dev.master-b00eeb3.tgz#a9ee5bae3e6c7f8a3a21725cc713d39e9128d55b"
+  integrity sha512-DNeAImkpT70VoG3w+yn8U2bRHG/WZZS87axcmfn9t/knG2EUW8/Uy21cVH0SVt51rXV8ApLmnuECkatHTuqpmg==
+  dependencies:
+    tslib "^1.9.0"
+
 "@nodelib/fs.scandir@2.1.5":
   version "2.1.5"
   resolved "https://registry.yarnpkg.com/@nodelib/fs.scandir/-/fs.scandir-2.1.5.tgz#7619c2eb21b25483f6d167548b4cfd5a7488c3d5"
@@ -1618,6 +1639,13 @@
     "@swc/core-win32-arm64-msvc" "1.2.189"
     "@swc/core-win32-ia32-msvc" "1.2.189"
     "@swc/core-win32-x64-msvc" "1.2.189"
+
+"@tailwindcss/forms@^0.5.2":
+  version "0.5.2"
+  resolved "https://registry.yarnpkg.com/@tailwindcss/forms/-/forms-0.5.2.tgz#4ef45f9916dcb37838cbe7fecdcc4ba7a7c2ab59"
+  integrity sha512-pSrFeJB6Bg1Mrg9CdQW3+hqZXAKsBrSG9MAfFLKy1pVA4Mb4W7C0k7mEhlmS2Dfo/otxrQOET7NJiJ9RrS563w==
+  dependencies:
+    mini-svg-data-uri "^1.2.3"
 
 "@tootallnate/once@1":
   version "1.1.2"
@@ -4284,11 +4312,6 @@ humanize-ms@^1.2.1:
   dependencies:
     ms "^2.0.0"
 
-husky@^8.0.1:
-  version "8.0.1"
-  resolved "https://registry.yarnpkg.com/husky/-/husky-8.0.1.tgz#511cb3e57de3e3190514ae49ed50f6bc3f50b3e9"
-  integrity sha512-xs7/chUH/CKdOCs7Zy0Aev9e/dKOMZf3K1Az1nar3tzlv0jfqnYtu235bstsWTmXOR0EfINrPa97yy4Lz6RiKw==
-
 iconv-lite@0.4.24, iconv-lite@^0.4.24, iconv-lite@^0.4.4:
   version "0.4.24"
   resolved "https://registry.yarnpkg.com/iconv-lite/-/iconv-lite-0.4.24.tgz#2022b4b25fbddc21d2f524974a474aafe733908b"
@@ -5130,6 +5153,11 @@ mini-css-extract-plugin@2.5.3:
   integrity sha512-YseMB8cs8U/KCaAGQoqYmfUuhhGW0a9p9XvWXrxVOkE3/IiISTLw4ALNt7JR5B2eYauFM+PQGSbXMDmVbR7Tfw==
   dependencies:
     schema-utils "^4.0.0"
+
+mini-svg-data-uri@^1.2.3:
+  version "1.4.4"
+  resolved "https://registry.yarnpkg.com/mini-svg-data-uri/-/mini-svg-data-uri-1.4.4.tgz#8ab0aabcdf8c29ad5693ca595af19dd2ead09939"
+  integrity sha512-r9deDe9p5FJUPZAk3A59wGH7Ii9YrjjWw0jmw/liSbHl2CHiyXj6FcDXDu2K3TjVAXqiJdaw3xxwlZZr9E6nHg==
 
 minimalistic-assert@^1.0.0:
   version "1.0.1"
