@@ -6,15 +6,15 @@
       <div class="flex justify-between">
         <a href="/" class="text-white">
           <div class="flex items-center">
-            <p class="lg:text-3xl text-2xl"><strong>Rijksmuseum</strong></p>
+            <p class="lg:text-3xl text-2xl"><strong>Rijksmuseum <span *ngIf="(isLoading$ | async)">Loading</span></strong></p>
           </div>
         </a>
       </div>
       <div class="flex items-center">
-        <div class="relative inline-block text-left px-4">
+        <div class="relative inline-block text-left pr-8">
           <div>
             <button type="button"
-              class="group inline-flex justify-center text-sm font-medium text-gray-700 hover:text-gray-900"
+              class="group inline-flex justify-center text-sm font-medium text-white hover:text-gray-400"
               id="menu-button" aria-expanded="false" aria-haspopup="true">
               Color
               <svg class="flex-shrink-0 -mr-1 ml-1 h-5 w-5 text-gray-400 group-hover:text-gray-500"
@@ -46,10 +46,10 @@
             </div>
           </div>
         </div>
-        <div class="relative inline-block text-left px-4">
+        <div class="relative inline-block text-left pr-8">
           <div>
             <button type="button"
-              class="group inline-flex justify-center text-sm font-medium text-gray-700 hover:text-gray-900"
+              class="group inline-flex justify-center text-sm font-medium text-white hover:text-gray-400"
               id="menu-button" aria-expanded="false" aria-haspopup="true">
               Sort
               <svg class="flex-shrink-0 -mr-1 ml-1 h-5 w-5 text-gray-400 group-hover:text-gray-500"
@@ -61,7 +61,7 @@
             </button>
           </div>
           <div
-            class="origin-top-right absolute right-0 mt-2 w-40 rounded-md shadow-2xl bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
+            class="origin-top-right absolute left-0 mt-2 w-40 rounded-md shadow-2xl bg-white ring-1 ring-black ring-opacity-5 focus:outline-none hidden"
             role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
             <div class="py-1" role="none">
               <a href="#" class="font-medium text-gray-900 block px-4 py-2 text-sm" role="menuitem" tabindex="-1"

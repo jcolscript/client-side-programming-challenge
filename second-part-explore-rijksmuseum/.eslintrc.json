@@ -33,7 +33,8 @@
             "style": "camelCase",
             "type": "attribute"
           }
-        ]
+        ],
+        "eslint-disable-next-line": "off",
       }
     },
     {
