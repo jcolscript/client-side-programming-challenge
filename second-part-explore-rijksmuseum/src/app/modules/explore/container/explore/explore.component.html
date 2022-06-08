@@ -1,12 +1,13 @@
 <main
-  class="flex flex-col min-h-screen justify-between lg:py-16 bg-[url('assets/img/background.png')] bg-contain bg-no-repeat bg-bottom">
+  class="flex flex-col min-h-screen lg:py-16 bg-[url('assets/img/background.png')] bg-contain bg-no-repeat bg-bottom">
   <header class="lg:w-full lg:top-0 lg:left-0 lg:z-30">
     <div
       class="container px-4 py-5 mx-auto space-y-4 lg:space-y-0 lg:flex lg:items-center lg:justify-between lg:space-x-10">
       <div class="flex justify-between">
         <a href="/" class="text-white">
           <div class="flex items-center">
-            <p class="lg:text-3xl text-2xl"><strong>Rijksmuseum <span *ngIf="(isLoading$ | async)">Loading</span></strong></p>
+            <p class="lg:text-3xl text-2xl"><strong>Rijksmuseum <span
+                  *ngIf="(isLoading$ | async)">Loading</span></strong></p>
           </div>
         </a>
       </div>
@@ -84,4 +85,22 @@
       </div>
     </div>
   </header>
+  <app-infinite-scroll (scrolled)="onScroll()">
+    <div class="rounded overflow-hidden shadow-lg bg-white max-w-sm w-full lg:max-w-full lg:flex" *ngFor=" let
+      artObcject of artObcjects">
+      <div
+        class="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden"
+        [style.background-image]='getBgImgUrl(artObcject.webImage.url)' [title]="artObcject.title">
+      </div>
+      <div class="px-6 py-4">
+        <div class="font-bold text-xl mb-2">{{artObcject.title}}</div>
+        <p class="text-gray-700 text-base">
+          {{artObcject.longTitle}}
+        </p>
+      </div>
+    </div>
+  </app-infinite-scroll>
+  <div class="alert alert-dark" *ngIf="isLoading$ | async">
+    Fetching tweets...
+  </div>
 </main>

@@ -61,8 +61,15 @@ export interface Collection {
   facets: Facets[];
 }
 
+export interface FiltersState {
+  page?: number;
+  period?: number | null;
+  color?: string;
+}
+
 export interface ICollectionState {
   artObjects: ArtObject[];
+  filters: FiltersState;
   error: boolean;
   loading: boolean;
 }

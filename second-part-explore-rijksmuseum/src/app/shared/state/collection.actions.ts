@@ -1,8 +1,13 @@
-import { ArtObject } from "../interfaces/collection.interface";
+import { ArtObject, FiltersState } from '../interfaces/collection.interface';
 
 export class GetCollection {
   static readonly type = '[COLLECTION API] Get Collection';
   constructor() {}
+}
+
+export class ChangeFilters {
+  static readonly type = '[COLLECTION API] Get Collection with filters';
+  constructor(public payload: FiltersState) {}
 }
 
 export class GetCollectionSuccess {
