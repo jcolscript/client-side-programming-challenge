@@ -41,8 +41,8 @@
       </div>
     </div>
     <div class="container px-4 mx-auto flex lg:justify-start justify-center">
-      <button href="#" class="inline-flex items-center justify-center h-12 w-12 border border-transparent lg:text-base text-sm font-semibold
-      rounded-full transition-all duration-300 hover:bg-white hover:text-black"
+      <button class="inline-flex items-center justify-center h-12 w-12 border border-transparent lg:text-base text-sm font-semibold
+      rounded-full transition-all duration-300 hover:bg-white hover:text-black roman-numbers"
         *ngFor="let romanNumber of romanNumbers; let i = index" (click)="selectedImage(i)"
         [ngClass]="{'ml-4': romanNumber !== 'I', 'bg-white text-black': i === imgIndex, 'bg-amber-700 text-white': i !== imgIndex}">
         {{romanNumber}}
@@ -50,7 +50,7 @@
     </div>
   </section>
   <div
-    class="lg:absolute lg:bottom-14 lg:right-14 fixed right-5 bottom-2 p-3 max-w-md mx-auto bg-white rounded-full shadow-lg flex items-center space-x-4 z-40"
+    class="lg:absolute lg:bottom-14 lg:right-14 fixed right-5 bottom-2 p-3 max-w-md mx-auto bg-white rounded-full shadow-lg flex items-center space-x-4 z-40 alert"
     [ngClass]="{'hidden': !isAlertVisible}">
     <div class="shrink-0">
       <img class="h-12" src="assets/img/oculus-rift.png" alt="ChitChat Logo">
@@ -59,8 +59,8 @@
       <p class="text-slate-500 font-medium">Coming soon <strong class="text-black font-semibold">Oculus Rift</strong>
       </p>
     </div>
-    <button href="#" class="inline-flex items-center justify-center border text-sm px-4 py-3 font-semibold
-    rounded-full transition-all duration-300 text-white bg-amber-700 hover:bg-white hover:text-black"
+    <button class="inline-flex items-center justify-center border text-sm px-4 py-3 font-semibold
+    rounded-full transition-all duration-300 text-white bg-amber-700 hover:bg-white hover:text-black close-alert"
       (click)="toggleAlert()">
       OK
     </button>

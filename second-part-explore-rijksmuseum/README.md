@@ -19,16 +19,19 @@ Explore Rijksmuseum
 - **Prettier** — Prettier is an opinionated code formatter.
 - **Eslint** —
   ESLint is a tool for identifying and reporting on patterns found in ECMAScript/JavaScript code.
-  
+
 ## Starting
 
 1. Clone this repository using `git clone https://github.com/jcolscript/client-side-programming-challenge.git`
-2. Move to the appropriate directory: `cd client-side-programming-challenge` and then `cd
-second-part-explore-rijksmuseum
-` <br />
+2. Move to the appropriate directory: `cd client-side-programming-challenge` and then `cd second-part-explore-rijksmuseum ` <br />
 3. Run `yarn` to install the dependencies <br />
 4. Run `yarn start` to run the application in development mode <br />
 5. The application will be available at `http://localhost:4200/`
+
+## Running Tests
+
+1. Move to the appropriate directory: `cd client-side-programming-challenge` and then `cd second-part-explore-rijksmuseum ` <br />
+2. Run `yarn test:coverage` for running tests and generate coverage map <br />
 
 ## Project build
 
