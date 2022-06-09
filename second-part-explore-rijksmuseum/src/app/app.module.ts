@@ -6,6 +6,7 @@ import { NgxsModule } from '@ngxs/store';
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { ArtObejectState } from './shared/state/artobject.state';
 import { CollectionState } from './shared/state/collection.state';
 
 @NgModule({
@@ -14,7 +15,7 @@ import { CollectionState } from './shared/state/collection.state';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    NgxsModule.forRoot([CollectionState], {
+    NgxsModule.forRoot([CollectionState, ArtObejectState], {
       developmentMode: !environment.production,
     }),
     NgxsReduxDevtoolsPluginModule.forRoot({

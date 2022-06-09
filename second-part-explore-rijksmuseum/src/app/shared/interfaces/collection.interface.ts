@@ -63,8 +63,7 @@ export interface Collection {
 
 export interface FiltersState {
   page?: number;
-  period?: number | null;
-  color?: string;
+  sort?: string | null;
 }
 
 export interface ICollectionState {

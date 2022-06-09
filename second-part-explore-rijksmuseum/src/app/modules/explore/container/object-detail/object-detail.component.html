@@ -1,0 +1,108 @@
+<main
+  class="flex flex-col min-h-screen justify-between lg:py-16 bg-[url('assets/img/background.png')] bg-contain bg-no-repeat bg-bottom">
+  <header class="lg:w-full lg:top-0 lg:left-0 lg:z-30">
+    <div
+      class="container px-4 py-5 mx-auto space-y-4 lg:space-y-0 lg:flex lg:items-center lg:justify-between lg:space-x-10">
+      <div class="flex justify-between">
+        <a href="/" class="text-white">
+          <div class="flex items-center">
+            <p class="lg:text-3xl text-2xl"><strong>Rijksmuseum</strong></p>
+          </div>
+        </a>
+      </div>
+      <a href="/explore" class="inline-flex items-center justify-center lg:px-5 lg:py-4 px-4 py-3 border border-transparent lg:text-base text-sm font-semibold
+      rounded-full transition-all duration-300 text-white bg-amber-700 hover:bg-white hover:text-black">
+        EXPLORE
+      </a>
+    </div>
+  </header>
+  <div class="bg-white">
+    <div
+      class="max-w-2xl mx-auto py-24 px-4 grid items-center grid-cols-1 gap-y-16 gap-x-8 sm:px-6 sm:py-32 lg:max-w-7xl lg:px-8 lg:grid-cols-2">
+      <div *ngIf="!(isLoading$ | async)">
+        <h2 class="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">{{artObcjectSelected.title}}</h2>
+        <p class="mt-4 text-gray-500">{{artObcjectSelected.description}}</p>
+
+        <dl class="mt-16 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 sm:gap-y-16 lg:gap-x-8">
+          <div class="border-t border-gray-200 pt-4">
+            <dt class="font-medium text-gray-900">Dating</dt>
+            <dd class="mt-2 text-sm text-gray-500">{{artObcjectSelected.dating.presentingDate}}</dd>
+          </div>
+
+          <div class="border-t border-gray-200 pt-4">
+            <dt class="font-medium text-gray-900">Colors</dt>
+            <dd class="mt-2 text-sm text-gray-500 grid grid-cols-4 gap-y-4 gap-x-4">
+              <div class="h-12 w-12 border-2" [style.background-color]="color.hex"
+                *ngFor="let color of artObcjectSelected.colors"></div>
+            </dd>
+          </div>
+
+          <div class="border-t border-gray-200 pt-4">
+            <dt class="font-medium text-gray-900">Materials</dt>
+            <dd class="mt-2 text-sm text-gray-500" *ngFor="let material of artObcjectSelected.materials">
+              {{material}}</dd>
+          </div>
+
+          <div class="border-t border-gray-200 pt-4">
+            <dt class="font-medium text-gray-900">Creation</dt>
+            <dd class="mt-2 text-sm text-gray-500" *ngFor="let principalMaker of artObcjectSelected.principalMakers">
+              {{principalMaker.labelDesc}}</dd>
+          </div>
+        </dl>
+      </div>
+      <div *ngIf="(isLoading$ | async)">
+        <div class="h-9 w-full bg-slate-300 rounded animate-pulse"></div>
+        <div class="grid grid-cols-3 gap-4 animate-pulse mt-10">
+          <div class="h-5 bg-slate-300 rounded col-span-2"></div>
+          <div class="h-5 bg-slate-300 rounded col-span-1"></div>
+        </div>
+        <div class="h-5 bg-slate-300 rounded col-span-2 animate-pulse mt-4"></div>
+        <div class="grid grid-cols-3 gap-4 animate-pulse mt-4">
+          <div class="h-5 bg-slate-300 rounded col-span-2"></div>
+          <div class="h-5 bg-slate-300 rounded col-span-1"></div>
+        </div>
+
+        <dl class="mt-16 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 sm:gap-y-16 lg:gap-x-8">
+          <div class="border-t border-gray-200 pt-4">
+            <div class="h-6 w-full bg-slate-300 rounded animate-pulse"></div>
+            <dd class="mt-2">
+              <div class="h-3 w-full bg-slate-300 rounded animate-pulse"></div>
+            </dd>
+          </div>
+
+          <div class="border-t border-gray-200 pt-4">
+            <div class="h-6 w-full bg-slate-300 rounded animate-pulse"></div>
+            <dd class="mt-2 text-sm text-gray-500 grid grid-cols-4 gap-y-4 gap-x-4">
+              <div class="h-12 w-12 bg-slate-300 rounded animate-pulse"></div>
+              <div class="h-12 w-12 bg-slate-300 rounded animate-pulse"></div>
+              <div class="h-12 w-12 bg-slate-300 rounded animate-pulse"></div>
+              <div class="h-12 w-12 bg-slate-300 rounded animate-pulse"></div>
+              <div class="h-12 w-12 bg-slate-300 rounded animate-pulse"></div>
+              <div class="h-12 w-12 bg-slate-300 rounded animate-pulse"></div>
+            </dd>
+          </div>
+
+          <div class="border-t border-gray-200 pt-4">
+            <div class="h-6 w-full bg-slate-300 rounded animate-pulse"></div>
+            <dd class="mt-2 text-sm text-gray-500">
+              <div class="h-3 w-full bg-slate-300 rounded animate-pulse"></div>
+            </dd>
+          </div>
+
+          <div class="border-t border-gray-200 pt-4">
+            <div class="h-6 w-full bg-slate-300 rounded animate-pulse"></div>
+            <dd class="mt-2 text-sm text-gray-500">
+              <div class="h-3 w-full bg-slate-300 rounded animate-pulse"></div>
+            </dd>
+          </div>
+        </dl>
+      </div>
+      <div class="grid grid-cols-1 grid-rows-1">
+        <img [src]="artObcjectSelected.webImage.url"
+          alt="Walnut card tray with white powder coated steel divider and 3 punchout holes."
+          class="bg-gray-100 rounded-lg" *ngIf="!(isLoading$ | async)">
+        <div class="h-[600px] w-full bg-slate-300 rounded animate-pulse" *ngIf="(isLoading$ | async)"></div>
+      </div>
+    </div>
+  </div>
+</main>

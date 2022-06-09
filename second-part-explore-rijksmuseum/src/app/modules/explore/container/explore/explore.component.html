@@ -6,8 +6,7 @@
       <div class="flex justify-between">
         <a href="/" class="text-white">
           <div class="flex items-center">
-            <p class="lg:text-3xl text-2xl"><strong>Rijksmuseum <span
-                  *ngIf="(isLoading$ | async)">Loading</span></strong></p>
+            <p class="lg:text-3xl text-2xl"><strong>Rijksmuseum</strong></p>
           </div>
         </a>
       </div>
@@ -16,42 +15,7 @@
           <div>
             <button type="button"
               class="group inline-flex justify-center text-sm font-medium text-white hover:text-gray-400"
-              id="menu-button" aria-expanded="false" aria-haspopup="true">
-              Color
-              <svg class="flex-shrink-0 -mr-1 ml-1 h-5 w-5 text-gray-400 group-hover:text-gray-500"
-                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                <path fill-rule="evenodd"
-                  d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                  clip-rule="evenodd" />
-              </svg>
-            </button>
-          </div>
-          <div
-            class="origin-top-right absolute left-0 mt-2 w-40 rounded-md shadow-2xl bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
-            role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
-            <div class="py-1" role="none">
-              <a href="#" class="font-medium text-gray-900 block px-4 py-2 text-sm" role="menuitem" tabindex="-1"
-                id="menu-item-0"> Most Popular </a>
-
-              <a href="#" class="text-gray-500 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-1">
-                Best Rating </a>
-
-              <a href="#" class="text-gray-500 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-2">
-                Newest </a>
-
-              <a href="#" class="text-gray-500 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-3">
-                Price: Low to High </a>
-
-              <a href="#" class="text-gray-500 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-4">
-                Price: High to Low </a>
-            </div>
-          </div>
-        </div>
-        <div class="relative inline-block text-left pr-8">
-          <div>
-            <button type="button"
-              class="group inline-flex justify-center text-sm font-medium text-white hover:text-gray-400"
-              id="menu-button" aria-expanded="false" aria-haspopup="true">
+              id="menu-button" aria-expanded="false" aria-haspopup="true" (click)="toggleFilterSort()">
               Sort
               <svg class="flex-shrink-0 -mr-1 ml-1 h-5 w-5 text-gray-400 group-hover:text-gray-500"
                 xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
@@ -62,35 +26,54 @@
             </button>
           </div>
           <div
-            class="origin-top-right absolute left-0 mt-2 w-40 rounded-md shadow-2xl bg-white ring-1 ring-black ring-opacity-5 focus:outline-none hidden"
-            role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
+            class="origin-top-right absolute left-0 mt-2 w-40 rounded-md shadow-2xl bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
+            role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1"
+            [ngClass]="{hidden: !this.filterSortState}">
             <div class="py-1" role="none">
-              <a href="#" class="font-medium text-gray-900 block px-4 py-2 text-sm" role="menuitem" tabindex="-1"
-                id="menu-item-0"> Most Popular </a>
+              <a class="cursor-pointer block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-0"
+                [ngClass]="{'font-medium text-gray-900': sortColelctionSelected === 'relevance', 'text-gray-500': sortColelctionSelected !== 'relevance'}"
+                (click)="sortColelction('relevance')">
+                Relevance </a>
 
-              <a href="#" class="text-gray-500 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-1">
-                Best Rating </a>
+              <a class="cursor-pointer block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-1"
+                [ngClass]="{'font-medium text-gray-900': sortColelctionSelected === 'objecttype', 'text-gray-500': sortColelctionSelected !== 'objecttype'}"
+                (click)="sortColelction('objecttype')">
+                Object Type </a>
 
-              <a href="#" class="text-gray-500 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-2">
-                Newest </a>
+              <a class="cursor-pointer block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-2"
+                [ngClass]="{'font-medium text-gray-900': sortColelctionSelected === 'chronologic', 'text-gray-500': sortColelctionSelected !== 'chronologic'}"
+                (click)="sortColelction('chronologic')">
+                Chronologic </a>
 
-              <a href="#" class="text-gray-500 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-3">
-                Price: Low to High </a>
+              <a class="cursor-pointer block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-3"
+                [ngClass]="{'font-medium text-gray-900': sortColelctionSelected === 'achronologic', 'text-gray-500': sortColelctionSelected !== 'achronologic'}"
+                (click)="sortColelction('achronologic')">
+                Achronologic </a>
 
-              <a href="#" class="text-gray-500 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-4">
-                Price: High to Low </a>
+              <a class="cursor-pointer block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-4"
+                [ngClass]="{'font-medium text-gray-900': sortColelctionSelected === 'artist', 'text-gray-500': sortColelctionSelected !== 'artist'}"
+                (click)="sortColelction('artist')">
+                Artist (A-Z) </a>
+
+              <a class="cursor-pointer block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-5"
+                [ngClass]="{'font-medium text-gray-900': sortColelctionSelected === 'artistdesc', 'text-gray-500': sortColelctionSelected !== 'artistdesc'}"
+                (click)="sortColelction('artistdesc')">
+                Artist (Z-A) </a>
             </div>
           </div>
         </div>
       </div>
     </div>
   </header>
-  <app-infinite-scroll (scrolled)="onScroll()">
-    <div class="rounded overflow-hidden shadow-lg bg-white max-w-sm w-full lg:max-w-full lg:flex" *ngFor=" let
-      artObcject of artObcjects">
-      <div
-        class="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden"
+  <section class="p-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-5">
+    <div class="cursor-pointer rounded overflow-hidden shadow-lg bg-white max-w-sm w-full lg:max-w-full lg:flex" *ngFor=" let
+    artObcject of artObcjects" (click)="openDetail(artObcject.objectNumber)">
+      <div *ngIf="artObcject.hasImage"
+        class="h-68 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden"
         [style.background-image]='getBgImgUrl(artObcject.webImage.url)' [title]="artObcject.title">
+      </div>
+      <div *ngIf="!artObcject.hasImage"
+        class="h-68 lg:h-auto lg:w-48 flex-none bg-slate-300 rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden animate-pulse">
       </div>
       <div class="px-6 py-4">
         <div class="font-bold text-xl mb-2">{{artObcject.title}}</div>
@@ -99,8 +82,63 @@
         </p>
       </div>
     </div>
-  </app-infinite-scroll>
-  <div class="alert alert-dark" *ngIf="isLoading$ | async">
-    Fetching tweets...
+    <ng-container *ngIf="(isLoading$ | async)">
+      <div class="rounded overflow-hidden shadow-lg bg-white max-w-sm w-full lg:max-w-full lg:flex">
+        <div
+          class="h-68 lg:h-auto lg:w-48 flex-none bg-slate-300 rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden animate-pulse">
+        </div>
+        <div class="px-6 py-4 w-full">
+          <div class="h-5 w-full bg-slate-300 rounded animate-pulse"></div>
+          <div class="space-y-3 mt-4">
+            <div class="grid grid-cols-3 gap-4">
+              <div class="h-5 bg-slate-300 rounded col-span-2 animate-pulse"></div>
+              <div class="h-5 bg-slate-300 rounded col-span-1 animate-pulse"></div>
+            </div>
+            <div class="h-5 bg-slate-300 rounded animate-pulse"></div>
+          </div>
+        </div>
+      </div>
+      <div class="rounded overflow-hidden shadow-lg bg-white max-w-sm w-full lg:max-w-full lg:flex">
+        <div
+          class="h-68 lg:h-auto lg:w-48 flex-none bg-slate-300 rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden animate-pulse">
+        </div>
+        <div class="px-6 py-4 w-full">
+          <div class="h-5 w-full bg-slate-300 rounded animate-pulse"></div>
+          <div class="space-y-3 mt-4">
+            <div class="grid grid-cols-3 gap-4 animate-pulse">
+              <div class="h-5 bg-slate-300 rounded col-span-2"></div>
+              <div class="h-5 bg-slate-300 rounded col-span-1"></div>
+            </div>
+            <div class="h-5 bg-slate-300 rounded animate-pulse"></div>
+          </div>
+        </div>
+      </div>
+      <div class="rounded overflow-hidden shadow-lg bg-white max-w-sm w-full lg:max-w-full lg:flex">
+        <div
+          class="h-68 lg:h-auto lg:w-48 flex-none bg-slate-300 rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden animate-pulse">
+        </div>
+        <div class="px-6 py-4 w-full">
+          <div class="h-5 w-full bg-slate-300 rounded animate-pulse"></div>
+          <div class="space-y-3 mt-4">
+            <div class="grid grid-cols-3 gap-4 animate-pulse">
+              <div class="h-5 bg-slate-300 rounded col-span-2"></div>
+              <div class="h-5 bg-slate-300 rounded col-span-1"></div>
+            </div>
+            <div class="h-5 bg-slate-300 rounded animate-pulse"></div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </section>
+  <div class="flex justify-center" *ngIf="!(isLoading$ | async)">
+    <div
+      class="cursor-pointer animate-bounce bg-white dark:bg-slate-800 p-2 w-10 h-10 ring-1 ring-slate-900/5 dark:ring-slate-200/20 shadow-lg rounded-full flex items-center justify-center"
+      (click)="showMore()">
+      <svg class=" w-6 h-6 text-amber-700" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+        viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round"
+          d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+      </svg>
+    </div>
   </div>
 </main>

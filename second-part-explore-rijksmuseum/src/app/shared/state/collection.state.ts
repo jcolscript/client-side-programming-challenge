@@ -8,7 +8,9 @@ import {
 } from '../interfaces/collection.interface';
 import { CollectionService } from '../services/collection.service';
 import {
-  ChangeFilters,
+  ChangeFilter,
+  ChangePage,
+  ClearCollection,
   GetCollection,
   GetCollectionSuccess,
 } from './collection.actions';
@@ -18,9 +20,8 @@ import {
   defaults: {
     artObjects: [],
     filters: {
+      sort: '',
       page: 1,
-      period: null,
-      color: '',
     },
     error: false,
     loading: false,
@@ -45,12 +46,29 @@ export class CollectionState {
     return state.error;
   }
 
-  @Action(ChangeFilters)
-  changeFilters(
-    { patchState, dispatch }: StateContext<ICollectionState>,
-    { payload }: ChangeFilters
+  @Action(ChangePage)
+  changePage(
+    { setState, dispatch, getState }: StateContext<ICollectionState>,
+    { payload }: ChangePage
   ) {
-    patchState({ filters: payload });
+    const state = getState();
+
+    setState({ ...state, filters: { ...state.filters, page: payload } });
+    dispatch(new GetCollection());
+  }
+
+  @Action(ChangeFilter)
+  changeFilter(
+    { setState, dispatch, getState }: StateContext<ICollectionState>,
+    { payload }: ChangeFilter
+  ) {
+    const state = getState();
+
+    setState({
+      ...state,
+      filters: { ...state.filters, sort: payload, page: 1 },
+    });
+    dispatch(new ClearCollection());
     dispatch(new GetCollection());
   }
 
@@ -60,23 +78,19 @@ export class CollectionState {
     {}: any
   ) {
     const state = getState();
+    console.log(state);
     setState({ ...state, loading: true });
 
     return this.collectionService
-      .getCollection(
-        state.filters.period,
-        state.filters.color,
-        state.filters.page
-      )
+      .getCollection(state.filters.sort, state.filters.page)
       .pipe(
         catchError((err, caught) => {
           setState({
             error: true,
             loading: false,
             filters: {
+              sort: '',
               page: 1,
-              period: null,
-              color: '',
             },
             artObjects: [],
           });
@@ -98,6 +112,17 @@ export class CollectionState {
       patch({
         loading: false,
         artObjects: append(payload),
+      })
+    );
+  }
+
+  @Action(ClearCollection)
+  clearCollection(ctx: StateContext<ICollectionState>) {
+    const state = ctx.getState();
+    ctx.setState(
+      patch({
+        loading: true,
+        artObjects: [],
       })
     );
   }

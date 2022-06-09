@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { ArtObject } from 'src/app/shared/interfaces/collection.interface';
 import {
-  ChangeFilters,
+  ChangeFilter,
+  ChangePage,
   GetCollection,
 } from 'src/app/shared/state/collection.actions';
 import { CollectionState } from 'src/app/shared/state/collection.state';
@@ -21,8 +23,11 @@ export class ExploreComponent implements OnInit {
     | undefined;
   public artObcjects: ArtObject[] = [];
   number = 1;
+  filterColorState = false;
+  filterSortState = false;
+  sortColelctionSelected = '';
 
-  constructor(private store: Store) {}
+  constructor(private store: Store, private router: Router) {}
 
   ngOnInit() {
     this.store.dispatch(new GetCollection());
@@ -34,8 +39,22 @@ export class ExploreComponent implements OnInit {
     return `url(${url})`;
   }
 
-  onScroll() {
-    this.store.dispatch(new ChangeFilters({ page: this.number + 1 }));
+  showMore() {
+    this.store.dispatch(new ChangePage(this.number + 1));
     this.number++;
+  }
+
+  toggleFilterSort() {
+    this.filterSortState = !this.filterSortState;
+  }
+
+  sortColelction(sort: string) {
+    this.sortColelctionSelected = sort;
+    this.store.dispatch(new ChangeFilter(sort));
+    this.toggleFilterSort();
+  }
+
+  openDetail(id: string) {
+    this.router.navigate(['/explore/object-detail', id]);
   }
 }
